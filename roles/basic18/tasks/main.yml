@@ -90,6 +90,7 @@
   - virtualbox-qt
   - chromium-browser
   - gdm3
+  - firefox
 
 - name: Install Required Packages
   apt: pkg={{ item  }} state=installed
