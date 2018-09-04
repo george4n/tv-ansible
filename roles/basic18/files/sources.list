@@ -1,0 +1,20 @@
+### Default Ubuntu Repo ###
+
+#deb http://cy.archive.ubuntu.com/ubuntu/ bionic main restricted
+#deb http://cy.archive.ubuntu.com/ubuntu/ bionic-updates main restricted
+#deb http://cy.archive.ubuntu.com/ubuntu/ bionic universe
+#deb http://cy.archive.ubuntu.com/ubuntu/ bionic-updates universe
+#deb http://cy.archive.ubuntu.com/ubuntu/ bionic multiverse
+#deb http://cy.archive.ubuntu.com/ubuntu/ bionic-updates multiverse
+#deb http://cy.archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu bionic-security main restricted
+deb http://security.ubuntu.com/ubuntu bionic-security universe
+deb http://security.ubuntu.com/ubuntu bionic-security multiverse
+
+### Televinken Repo ###
+
+deb http://skynet.tvloc/ubuntu/ bionic main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ bionic-security main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ bionic-backports main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ bionic-proposed main restricted universe multiverse
