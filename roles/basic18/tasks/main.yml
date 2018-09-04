@@ -39,13 +39,13 @@
 - name: Setting Local APT Sources Template
   copy: src=../files/sources.list dest=/etc/apt/sources.list owner=root group=root mode=0644
 
+- name: "Ensure Google linux signing key present"
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+
 - name: Adding sources for Chrome
   apt_repository:
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: present
-
-- name: "Ensure Google linux signing key present"
-  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
 
 - name: Adding sources for Virtualbox
   apt_repository:
