@@ -47,20 +47,15 @@
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: present
 
-- name: Adding sources for Virtualbox
-  apt_repository:
-    repo: deb http://download.virtualbox.org/virtualbox/debian xenial contrib
-    state: present
-
 - name: "Ensure VirtualBox linux signing key present"
   apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc state=present
 
 - name: "Ensure VirtualBox linux signing key present"
   apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc state=present
 
-- name: Adding sources for Remmina
+- name: Adding sources for Virtualbox
   apt_repository:
-    repo: 'ppa:remmina-ppa-team/remmina-next'
+    repo: deb http://download.virtualbox.org/virtualbox/debian xenial contrib
     state: present
 
 ########## UPDATE REPO ##########
