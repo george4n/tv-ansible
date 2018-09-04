@@ -1,0 +1,7 @@
+---
+- hosts: 3savedesk
+  become: true
+  roles:
+  - basic
+  - 3savedesk
+  - tvcc

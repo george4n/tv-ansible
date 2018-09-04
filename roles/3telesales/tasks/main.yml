@@ -1,0 +1,7 @@
+- file:
+    path: /etc/opt/chrome/policies/managed/
+    state: directory
+    mode: 0755
+
+- name: Setting Chrome Group Policies
+  copy: src=../files/policy.json dest=/etc/opt/chrome/policies/managed/policy.json owner=root group=root mode=0755

@@ -1,0 +1,7 @@
+---
+- hosts: 3telesales
+  become: true
+  roles:
+  - basic
+  - 3telesales
+  - tvcc

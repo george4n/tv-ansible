@@ -1,0 +1,7 @@
+---
+- hosts: tmp
+  become: true
+  roles:
+  - basic
+  - 3foretag
+  - tvcc

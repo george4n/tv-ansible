@@ -1,0 +1,46 @@
+- name: Setting Environment Paths
+  copy: src=../files/environment dest=/etc/environment owner=root group=root mode=0644
+
+- name: Setting Firefox shortcut
+  copy: src=../files/firefox.desktop dest=/usr/share/applications/firefox.desktop owner=root group=root mode=0644
+
+#- name: Download system
+#  copy: src=../files/tvcc.zip dest=/tmp/tvcc.zip owner=root group=root mode=0755
+#  directory_mode: yes
+
+#- name: Unzip system
+#  unarchive:
+#    src: /tmp/tvcc.zip
+#    dest: /usr/local/bin/
+#    remote_src: yes
+
+- name: Synchronization using rsync protocol (push)
+  synchronize:
+    src: ../files/tvcc
+    dest: /usr/local/bin/
+
+- name: Ensure a job that runs at 9 and 17 exists. Creates an entry like "0 5,2 * * ls -alh > /dev/null"
+  cron:
+    name: "kill firefox"
+    minute: "0"
+    hour: "9,17"
+    job: "killall firefox > /dev/null"
+
+
+
+
+
+########## OLD ##########
+
+#- name: Install TVCC System
+#  shell: rm -rf /usr/local/bin/tvcc && cd /usr/local/bin && git clone https://github.com/george4n/tvcc.git
+
+#- name: Clean TVCC Folder
+#  file:
+#    state: absent
+#    path: /usr/local/bin/tvcc/
+
+#- name: Clean TVCC Folder OLD
+#  file:
+#    state: absent
+#    path: /user/

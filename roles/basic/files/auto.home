@@ -1,0 +1,10 @@
+
+#users    	-fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192    	172.20.100.11:/media/rdata/home/users
+#kundservice	-fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192		172.20.200.100:/media/kundservice
+kundservice     -fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192         172.20.100.13:/media/kundservice
+savedesk     	-fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192         172.20.100.13:/media/savedesk
+televinken	-fstype=nfs4,rw,soft,intr,rsize=1400,wsize=1400		172.20.210.100:/media/televinken
+telesales	-fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192		172.20.220.100:/media/telesales
+foretag		-fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192		172.20.220.100:/media/foretag
+.system   	-fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192         172.20.100.11:/srv/users/.system
+foretagvm	-fstype=nfs4,rw,soft,intr,rsize=8192,wsize=8192         172.20.100.11:/media/vmdrive/foretag

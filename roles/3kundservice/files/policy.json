@@ -1,0 +1,60 @@
+{
+	"ShowHomeButton": true,
+	"HomepageLocation": "https://apps.mypurecloud.ie",
+	"HardwareAccelerationModeEnabled": false,
+	"BookmarkBarEnabled": true,
+	"ManagedBookmarks": [{
+			"toplevel_name": "3 Services"
+		},
+		{
+			"url": "https://www.tre.se/privat/",
+			"name": "Tre Home"
+		},
+		{
+			"url": "https://apps.mypurecloud.ie",
+			"name": "PureCloud"
+		},
+		{
+			"url": "https://crm.tre.se/care",
+			"name": "Care"
+		},
+		{
+			"url": "https://siw.tre.se",
+			"name": "SIW"
+		},
+		{
+			"url": "https://service.datrepair.de/tre/se",
+			"name": "Ingram Micro"
+		},
+		{
+			"url": "https://skada.treforsakring.se/Account/Login",
+			"name": "Tre Forsakring"
+		},
+		{
+			"url": "https://crm.tre.se/inms/",
+			"name": "INMS"
+		},
+		{
+			"url": "https://www.brightrelation.com/sv",
+			"name": "Bright"
+		},
+		{
+			"url": "https://login.microsoftonline.com",
+			"name": "Office365"
+		},
+		{
+			"url": "chrome://settings/clearBrowserData",
+			"name": "Clear Browsing Data"
+		}
+	],
+	"RestoreOnStartupURLs": ["https://apps.mypurecloud.ie", "https://crm.tre.se/care", "https://siw.tre.se"],
+	"RestoreOnStartup": 4,
+	"ExtensionInstallForcelist": ["cfhdojbkjhnklbpkdaibdccddilifddb;https://clients2.google.com/service/update2/crx"],
+	"DefaultBrowserSettingEnabled": true,
+	"DefaultPopupsSetting": 1,
+	"URLBlacklist": ["chrome://settings", "chrome://policy", "chrome://extensions", "https://www.facebook.com", "https://www.youtube.com", "https://www.netflix.com/"],
+	"URLWhitelist": ["chrome://settings/clearBrowserData"],
+	"DiskCacheDir": "/dev/null",
+	"DiskCacheSize": 1
+
+}

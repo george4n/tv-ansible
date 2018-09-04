@@ -1,0 +1,7 @@
+---
+- hosts: 3kundservice
+  become: true
+  roles:
+  - basic
+  - 3kundservice
+  - tvcc

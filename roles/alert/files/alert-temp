@@ -1,0 +1,44 @@
+#!/bin/bash
+
+MAX_TEMP=70
+SENSOR_OUTPUT=$(sensors | grep -oP 'Physical.*?\+\K[0-9.]+')
+INT=${SENSOR_OUTPUT%.*}
+DIFF=$(echo "$INT - $MAX_TEMP" | bc)
+DEG=$'\xc2\xb0'C
+
+function notify {
+
+curl -s --request POST \
+  --url https://hooks.slack.com/services/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 \
+  --header 'Cache-Control: no-cache' \
+  --header 'Content-Type: application/json' \
+  --data '{"attachments":[{"color": "#ff0000","text": "'$HOSTNAME' is overheating. Current temperature is at '$INT$DEG', '$DIFF$DEG' above normal.","footer": "Slack API"}]}' > /dev/null
+
+}
+
+
+function check {
+
+echo ''$(date)' - Checking temperature' >> /var/log/alert-temp.log
+
+if [ $INT -gt $MAX_TEMP ]; then
+
+        echo ''$(date)' - Temperature too high, preparing to send notification' >> /var/log/alert-temp.log
+        notify
+        echo ''$(date)' - Temperature warning notification sent' >> /var/log/alert-temp.log
+
+else
+
+        echo ''$(date)' - Temperature nominal' >> /var/log/alert-temp.log
+fi
+
+}
+
+while true; do
+SEED=$(shuf -i 3000-3600 -n 1)
+echo $SEED
+sleep $SEED
+echo ''$(date)' - Check Started' >> /var/log/alert-temp.log
+check
+echo ''$(date)' - Check Completed' >> /var/log/alert-temp.log
+done

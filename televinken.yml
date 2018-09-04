@@ -1,0 +1,8 @@
+---
+- hosts: televinken
+  become: true
+  roles:
+  - basic
+  - televinken
+  - tvcc
+  ignore_errors: yes

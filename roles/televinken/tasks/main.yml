@@ -1,0 +1,36 @@
+- file:
+    path: /etc/opt/chrome/policies/managed/
+    state: directory
+    mode: 0755
+
+- name: Setting Chrome Group Policies
+  copy: src=../files/policy.json dest=/etc/opt/chrome/policies/managed/policy.json owner=root group=root mode=0644
+
+- name: Remove Blacklisted Packages
+  apt: pkg={{ item  }} state=absent
+  with_items:
+  - chromium-browser
+  - firefox
+
+- cron:
+    name: "kill firefox"
+    minute: "*/5"
+    job: "killall firefox >/dev/null 2>&1"
+    state: absent
+
+- name: Download Ubuntu Slack Package
+  command: "wget -O /tmp/slack-desktop.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.1-amd64.deb"
+  args:
+    creates: "/tmp/slack-desktop.deb"
+#  when: check_slack.rc == 1
+
+- name: Install slack.deb
+  apt: deb="/tmp/slack-desktop.deb"
+
+
+#- name: Downloading Slack Debian Package
+#  copy: src=../files/slack.deb dest=/tmp/slack.deb owner=root group=root mode=0755
+
+#- name: Install slack.deb
+#  apt: deb="/tmp/slack.deb"
+#  sudo: true

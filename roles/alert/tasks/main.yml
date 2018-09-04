@@ -1,0 +1,11 @@
+- name: Setting Temp Alert Script
+  copy: src=../files/alert-temp dest=/usr/sbin/alert-temp owner=root group=root mode=0700
+
+- name: Setting rc.local
+  copy: src=../files/rc.local dest=/etc/rc.local owner=root group=root mode=0755
+
+#- name: Killall Scripts
+#  shell: pkill -9 -f alert-temp
+
+#- name: Restart rc.local
+#  shell: /bin/bash /etc/rc.local &

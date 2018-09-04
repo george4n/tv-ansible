@@ -1,0 +1,5 @@
+---
+- hosts: tmp
+  become: true
+  roles:
+  - basic18

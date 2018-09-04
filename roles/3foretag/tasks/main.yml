@@ -1,0 +1,18 @@
+- file:
+    path: /etc/opt/chrome/policies/managed/
+    state: directory
+    mode: 0755
+
+- name: Setting Chrome Group Policies
+  copy: src=../files/policy.json dest=/etc/opt/chrome/policies/managed/policy.json owner=root group=root mode=0755
+
+- name: Remove VirtualBox Standard
+  apt: pkg={{ item  }} state=absent
+  with_items:
+  - virtualbox
+  - virtualbox-dkms
+
+- name: Install VirtualBox-5.1
+  apt: pkg={{ item  }} state=present
+  with_items:
+  - virtualbox-5.1
