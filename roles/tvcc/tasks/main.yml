@@ -18,6 +18,8 @@
   synchronize:
     src: ../files/tvcc
     dest: /usr/local/bin/
+    rsync_opts:
+      - "--exclude=.git"
 
 - name: Ensure a job that runs at 9 and 17 exists. Creates an entry like "0 5,2 * * ls -alh > /dev/null"
   cron:
