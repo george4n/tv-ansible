@@ -1,0 +1,8 @@
+---
+- import_playbook: pb-basic-install.yml
+- import_playbook: pb-televinken.yml
+- import_playbook: pb-3telesales.yml
+- import_playbook: pb-3kundservice.yml
+- import_playbook: pb-3foretag.yml
+- import_playbook: pb-3savedesk.yml
+- import_playbook: pb-tvcc.yml
