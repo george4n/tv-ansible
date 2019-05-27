@@ -2,8 +2,7 @@
 
 [tmp]
 
-#nuc105
-nuc008
+nuc105
 
 [3savedesk]
 
@@ -16,95 +15,62 @@ nuc082
 nuc083
 nuc084
 nuc085
-nuc094
 nuc091
+nuc094
 
 [3foretag]
 
-nuc091
+
+[televinken]
+
+nuc041
+nuc042
 nuc096
-nuc097
-nuc098
-nuc099
-nuc100
-nuc101
 nuc102
 nuc103
 nuc104
 nuc106
+nuc107
+nuc108
+nuc109
 nuc110
 nuc111
 nuc112
 nuc113
+nuc114
+nuc115
 
-[televinken]
+[3kundservice]
 
-nuc010
+nuc037
+nuc038
+nuc039
+nuc043
+nuc044
+nuc045
+nuc048
+nuc049
+nuc056
 nuc069
-nuc070
 nuc073
 nuc074
 nuc075
 nuc076
 nuc077
-nuc086
-nuc088
 nuc089
 nuc092
 nuc093
-nuc095
-nuc107
-nuc108
-nuc109
-tos013
-tos014
-
-[3kundservice]
-
-nuc018
-nuc019
-nuc020
-nuc021
-nuc022
-nuc023
-nuc025
-nuc026
-nuc027
-nuc028
-nuc029
-nuc030
-nuc031
-nuc032
-nuc033
-nuc034
-nuc035
-nuc036
-nuc037
-nuc038
-nuc039
-nuc040
-nuc041
-nuc042
-nuc043
-nuc044
-nuc045
-nuc066
-tos026
 
 [3telesales]
 
-nuc017
 nuc046
 nuc047
-nuc048
-nuc049
 nuc050
 nuc051
 nuc052
 nuc053
 nuc054
 nuc055
-nuc056
 nuc057
 nuc058
 nuc059
@@ -113,4 +79,4 @@ nuc061
 nuc062
 nuc064
 nuc065
-
+nuc066
