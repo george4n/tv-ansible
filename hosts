@@ -2,7 +2,6 @@
 
 [tmp]
 
-nuc105
 
 [3savedesk]
 
@@ -23,9 +22,15 @@ nuc094
 
 [televinken]
 
+nuc040
 nuc041
 nuc042
+nuc070
+nuc086
+nuc088
 nuc096
+nuc097
+nuc098
 nuc102
 nuc103
 nuc104
@@ -40,6 +45,7 @@ nuc113
 nuc114
 nuc115
 
+
 [3kundservice]
 
 nuc037
@@ -47,9 +53,7 @@ nuc038
 nuc039
 nuc043
 nuc044
-nuc045
 nuc048
-nuc049
 nuc056
 nuc069
 nuc073
@@ -66,13 +70,11 @@ nuc093
 nuc046
 nuc047
 nuc050
-nuc051
 nuc052
 nuc053
 nuc054
 nuc055
 nuc057
-nuc058
 nuc059
 nuc060
 nuc061

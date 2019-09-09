@@ -52,8 +52,8 @@
 	"ExtensionInstallForcelist": ["cfhdojbkjhnklbpkdaibdccddilifddb;https://clients2.google.com/service/update2/crx"],
 	"DefaultBrowserSettingEnabled": true,
 	"DefaultPopupsSetting": 1,
-	"URLBlacklist": ["chrome://settings", "chrome://policy", "chrome://extensions", "https://www.facebook.com", "https://sktibbl.io", "https://www.youtube.com", "https://www.netflix.com/", "http://www.4chan.org/", "https://9gag.com/", "https://www.reddit.com", "http://existenz.se/", "https://www.expressen.se/", "https://www.dn.se/", "https://www.aftonbladet.se/", "https://www.liveleak.com/", "https://www.liveleak.com/", "https://www.ted.com/", "https://vimeo.com", "flashback.org", "https://nyheter24.se/", "https://internetworld.idg.se", "svt.se", "blocket.se", "tradera.se", "http://omni.se/", "https://www.svd.se/", "https://vodeville.se/", "https://www.spotify.com/", "https://www.storytel.se/", "https://www.bazaraki.com/", "http://www.steam-engine.org/", "https://chrome.google.com/webstore/", "https://hex.frvr.com/", "www.hemnet.se", "www.instagram.se"],	
-	"URLWhitelist": ["chrome://settings/clearBrowserData"],
+	"URLWhitelist": ["chrome://settings/passwords", "chrome://settings/clearBrowserData"],
+	"URLBlacklist": ["chrome://settings", "chrome://policy", "chrome://extensions", "https://www.facebook.com", "https://www.youtube.com", "https://www.netflix.com/", "http://www.4chan.org/", "https://9gag.com/", "https://www.reddit.com", "http://existenz.se/", "https://www.expressen.se/", "https://www.dn.se/", "https://www.aftonbladet.se/", "https://www.liveleak.com/", "https://www.liveleak.com/", "https://www.ted.com/", "https://vimeo.com", "flashback.org", "https://nyheter24.se/", "https://internetworld.idg.se", "svt.se", "blocket.se", "tradera.se", "http://omni.se/", "https://www.svd.se/", "https://vodeville.se/", "https://www.spotify.com/", "https://www.storytel.se/", "https://www.bazaraki.com/", "http://www.steam-engine.org/", "https://chrome.google.com/webstore/"],
 	"DiskCacheDir": "/dev/null",
 	"DiskCacheSize": 1
 

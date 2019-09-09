@@ -57,9 +57,9 @@
     repo: deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_16.04/ /
     state: absent
 
-- name: "Ensure OwnCloud linux signing key absent"
-  apt_key: url=https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_16.04/Release.key
-  state: absent
+#- name: "Ensure OwnCloud linux signing key absent"
+#  apt_key: url=https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_16.04/Release.key
+#  state: absent
 
 - name: Adding sources for Virtualbox
   apt_repository:
@@ -153,8 +153,14 @@
 - name: Download Bria Debian Package
   copy: src=../files/bria32.deb dest=/tmp/bria32.deb owner=root group=root mode=0755
 
+- name: Download Zoiper Debian Package
+  copy: src=../files/zoiper5.deb dest=/tmp/zoiper5.deb owner=root group=root mode=0755
+
 - name: Install bria32.deb
   apt: deb="/tmp/bria32.deb"
+
+- name: Install zoiper5.deb
+  apt: deb="/tmp/zoiper5.deb"
 
 - name: Install Dependencies
   shell: apt install -fy
