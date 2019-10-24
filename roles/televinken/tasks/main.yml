@@ -22,15 +22,14 @@
   command: "wget -O /tmp/slack-desktop.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.1-amd64.deb"
   args:
     creates: "/tmp/slack-desktop.deb"
-#  when: check_slack.rc == 1
 
 - name: Install slack.deb
   apt: deb="/tmp/slack-desktop.deb"
 
+- name: Download Ubuntu RocketChat Package
+  command: "wget -O /tmp/rocketchat-desktop.deb https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.5/rocketchat_2.15.5_amd64.deb"
+  args:
+    creates: "/tmp/rocketchat-desktop.deb"
 
-#- name: Downloading Slack Debian Package
-#  copy: src=../files/slack.deb dest=/tmp/slack.deb owner=root group=root mode=0755
-
-#- name: Install slack.deb
-#  apt: deb="/tmp/slack.deb"
-#  sudo: true
+- name: Install rocketchat-desktop.deb
+  apt: deb="/tmp/rocketchat-desktop.deb"
