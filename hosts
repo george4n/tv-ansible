@@ -11,9 +11,9 @@ nuc072
 nuc078
 nuc081
 nuc082
-nuc083
 nuc084
 nuc085
+nuc086
 nuc091
 nuc094
 
@@ -22,14 +22,7 @@ nuc094
 
 [televinken]
 
-nuc040
-nuc041
-nuc042
-nuc070
-nuc086
-nuc088
 nuc096
-nuc097
 nuc098
 nuc102
 nuc103
@@ -40,19 +33,17 @@ nuc108
 nuc109
 nuc110
 nuc111
-nuc112
 nuc113
 nuc114
 nuc115
 
-
 [3kundservice]
 
 nuc037
-nuc038
 nuc039
 nuc043
 nuc044
+nuc045
 nuc048
 nuc056
 nuc069
@@ -67,6 +58,7 @@ nuc093
 
 [3telesales]
 
+nuc041
 nuc046
 nuc047
 nuc050

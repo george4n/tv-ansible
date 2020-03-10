@@ -57,6 +57,16 @@
     repo: deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_16.04/ /
     state: absent
 
+- name: Add an apt key by id from a keyserver
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: CB2DE8E5
+
+- name: Adding sources for onlyoffice
+  apt_repository:
+    repo: deb https://download.onlyoffice.com/repo/debian squeeze main
+    state: present
+
 #- name: "Ensure OwnCloud linux signing key absent"
 #  apt_key: url=https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_16.04/Release.key
 #  state: absent
@@ -109,9 +119,10 @@
   - virtualbox-qt
   - chromium-browser
   - firefox
+  - libreoffice*
 
 - name: Install Required Packages
-  apt: pkg={{ item  }} state=installed
+  apt: pkg={{ item  }} state=present
   with_items:
   - git
   - htop
@@ -147,6 +158,8 @@
   - xprintidle
   - curl
   - lm-sensors
+  - onlyoffice-desktopeditors
+
 
   ########## INSTALL SOFTPHONE ##########
 
@@ -190,8 +203,8 @@
     path: /etc/modprobe.d/blacklist.conf
     line: 'blacklist snd_hda_intel'
 
-- name: Enable Epoptes Client
-  shell: epoptes-client -c
+#- name: Enable Epoptes Client
+#  shell: epoptes-client -c
 
 - name: Install Language Files
   copy: src=../files/locale dest=/etc/default/locale owner=root group=root mode=0644
