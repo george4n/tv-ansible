@@ -12,3 +12,7 @@
   - chromium-browser
   - firefox
 
+- name: Install Required Packages   
+  apt: pkg={{ item  }} state=present   
+  with_items:
+  - teams

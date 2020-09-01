@@ -6,3 +6,5 @@
 - import_playbook: pb-3foretag.yml
 - import_playbook: pb-3savedesk.yml
 - import_playbook: pb-tvcc.yml
+- import_playbook: pb-tempnucs-cc.yml
+- import_playbook: pb-tempnucs-hallon.yml

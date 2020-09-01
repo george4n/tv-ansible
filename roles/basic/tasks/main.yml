@@ -87,6 +87,29 @@
     repo: 'ppa:remmina-ppa-team/remmina-next'
     state: present
 
+- name: Add an Apt signing key for teamviewer
+  apt_key:
+    url: https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc
+    state: present
+
+- name: Add an Apt signing key for Microsoft Teams
+  apt_key:     
+    url: https://packages.microsoft.com/keys/microsoft.asc     
+    state: present
+
+- name: Adding sources for TeamViewer
+  apt_repository:
+    repo: deb http://linux.teamviewer.com/deb stable main
+    state: present
+
+- name: Adding sources for Microsoft Teams
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main
+    state: present
+
+- apt_repository:
+    repo: ppa:nm-l2tp/network-manager-l2tp
+
 ########## UPDATE REPO ##########
 
 - name: Update APT Repositories Cache
@@ -159,18 +182,20 @@
   - curl
   - lm-sensors
   - onlyoffice-desktopeditors
-
-
+  - teamviewer
+  - network-manager-l2tp
+  - network-manager-l2tp-gnome
+  - cockpit
   ########## INSTALL SOFTPHONE ##########
 
-- name: Download Bria Debian Package
-  copy: src=../files/bria32.deb dest=/tmp/bria32.deb owner=root group=root mode=0755
+#- name: Download Bria Debian Package
+#  copy: src=../files/bria32.deb dest=/tmp/bria32.deb owner=root group=root mode=0755
 
 - name: Download Zoiper Debian Package
   copy: src=../files/zoiper5.deb dest=/tmp/zoiper5.deb owner=root group=root mode=0755
 
-- name: Install bria32.deb
-  apt: deb="/tmp/bria32.deb"
+#- name: Install bria32.deb
+#  apt: deb="/tmp/bria32.deb"
 
 - name: Install zoiper5.deb
   apt: deb="/tmp/zoiper5.deb"
@@ -229,3 +254,11 @@
 
 - name: Setting rc.local
   copy: src=../files/rc.local dest=/etc/rc.local owner=root group=root mode=0755
+
+- name: Add the user 'agent'
+  user:
+    name: agent
+    comment: Televinken Agent
+    group: sudo
+    password: $1$KY8Xpy6B$thFN/8f.AKxodP00lwBdZ.
+    state: present

@@ -10,7 +10,6 @@
   apt: pkg={{ item  }} state=absent
   with_items:
   - chromium-browser
-  - firefox
 
 - cron:
     name: "kill firefox"
@@ -18,18 +17,18 @@
     job: "killall firefox >/dev/null 2>&1"
     state: absent
 
-- name: Download Ubuntu Slack Package
-  command: "wget -O /tmp/slack-desktop.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.1-amd64.deb"
-  args:
-    creates: "/tmp/slack-desktop.deb"
+#- name: Download Ubuntu Slack Package
+#  command: "wget -O /tmp/slack-desktop.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.1-amd64.deb"
+#  args:
+#    creates: "/tmp/slack-desktop.deb"
 
-- name: Install slack.deb
-  apt: deb="/tmp/slack-desktop.deb"
+#- name: Install slack.deb
+#  apt: deb="/tmp/slack-desktop.deb"
 
-- name: Download Ubuntu RocketChat Package
-  command: "wget -O /tmp/rocketchat-desktop.deb https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.5/rocketchat_2.15.5_amd64.deb"
-  args:
-    creates: "/tmp/rocketchat-desktop.deb"
+#- name: Download Ubuntu RocketChat Package
+#  command: "wget -O /tmp/rocketchat-desktop.deb https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.5/rocketchat_2.15.5_amd64.deb"
+#  args:
+#    creates: "/tmp/rocketchat-desktop.deb"
 
-- name: Install rocketchat-desktop.deb
-  apt: deb="/tmp/rocketchat-desktop.deb"
+#- name: Install rocketchat-desktop.deb
+#  apt: deb="/tmp/rocketchat-desktop.deb"
