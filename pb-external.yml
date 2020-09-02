@@ -1,0 +1,6 @@
+---
+- hosts: laptops
+  become: true
+  roles:
+  - laptops
+  - 3telesales

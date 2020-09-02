@@ -1,0 +1,6 @@
+---
+- hosts: tempnucs
+  become: true
+  roles:
+  - basic
+  - televinken

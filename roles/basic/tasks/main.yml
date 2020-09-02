@@ -200,6 +200,12 @@
 - name: Install zoiper5.deb
   apt: deb="/tmp/zoiper5.deb"
 
+- name: Download Zoom Debian Package
+  copy: src=../files/zoom.deb dest=/tmp/zoom.deb owner=root group=root mode=0755
+
+- name: Install zoom.deb
+  apt: deb="/tmp/zoom.deb"
+
 - name: Install Dependencies
   shell: apt install -fy
 

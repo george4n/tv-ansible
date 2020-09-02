@@ -1,0 +1,256 @@
+########## NETWORK SETTINGS ##########
+
+- name: Settings sudoers NOPASSWD
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD:ALL'
+    owner: root
+    group: root
+    mode: 440
+
+- name: Setting Hosts File Template
+  copy: src=../files/hosts dest=/etc/hosts owner=root group=root mode=0644
+
+- name: Adding IPV4 Address
+  lineinfile: "dest=/etc/hosts line='{{ ansible_default_ipv4.address }} {{ ansible_hostname }}'"
+
+- name: Modifying Hosts File
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.1\.1'
+    line: '127.0.1.1 {{ ansible_hostname }}'
+    owner: root
+    group: root
+    mode: 0644
+
+########## REPO SETTINGS ##########
+
+- name: Delete File Ubuntu Rogue List
+  file:
+    path: /etc/apt/apt.conf.d/50appstream
+    state: absent
+
+- name: Delete File List
+  file:
+    path: /etc/apt/sources.list.d/minergate.list
+    state: absent
+
+- name: Delete File Google Chrome Rogue List
+  file:
+    path: /etc/apt/sources.list.d/google-chrome.list
+    state: absent
+
+- name: Setting Local APT Sources Template
+  copy: src=../files/sources.list dest=/etc/apt/sources.list owner=root group=root mode=0644
+
+- name: Adding sources for Chrome
+  apt_repository:
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+
+- name: "Ensure Google linux signing key present"
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+
+- name: Removing sources for owncloud
+  apt_repository:
+    repo: deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/Ubuntu_16.04/ /
+    state: absent
+
+- name: Add an apt key by id from a keyserver
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: CB2DE8E5
+
+- name: Adding sources for onlyoffice
+  apt_repository:
+    repo: deb https://download.onlyoffice.com/repo/debian squeeze main
+    state: present
+
+#- name: "Ensure OwnCloud linux signing key absent"
+#  apt_key: url=https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_16.04/Release.key
+#  state: absent
+
+- name: Adding sources for Virtualbox
+  apt_repository:
+    repo: deb http://download.virtualbox.org/virtualbox/debian xenial contrib
+    state: present
+
+- name: "Ensure VirtualBox linux signing key present"
+  apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc state=present
+
+- name: "Ensure VirtualBox linux signing key present"
+  apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc state=present
+
+- name: Adding sources for Remmina
+  apt_repository:
+    repo: 'ppa:remmina-ppa-team/remmina-next'
+    state: present
+
+
+- name: Add an Apt signing key for teamviewer
+  apt_key:
+    url: https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc
+    state: present
+
+- name: Adding sources for TeamViewer
+  apt_repository:
+    repo: deb http://linux.teamviewer.com/deb stable main
+    state: present
+
+- apt_repository:
+    repo: ppa:nm-l2tp/network-manager-l2tp 
+
+########## UPDATE REPO ##########
+
+- name: Update APT Repositories Cache
+  apt:
+    update_cache: yes
+    allow_unauthenticated: yes
+
+########## INSTALL DEPENDENCIES ##########
+
+- name: Install Dependencies
+  shell: apt install -fy
+
+########## ADD/REMOVE APPS ##########
+
+- name: Remove Blacklisted Packages
+  apt: pkg={{ item  }} state=absent
+  with_items:
+  - transmission-gtk
+  - transmission-common
+  - gnome-mahjongg
+  - gnome-mines
+  - gnome-sudoku
+  - account-plugin-aim
+  - account-plugin-facebook
+  - account-plugin-flickr
+  - account-plugin-jabber
+  - account-plugin-salut
+  - account-plugin-yahoo
+  - virtualbox
+  - virtualbox-qt
+  - chromium-browser
+  - firefox
+  - libreoffice*
+
+- name: Install Required Packages
+  apt: pkg={{ item  }} state=present
+  with_items:
+  - git
+  - htop
+  - vim
+  - iptraf
+  - ntp
+  - at
+  - autofs
+  - nfs-common
+  - watchdog
+  - libnss-ldap
+  - nscd
+  - epoptes-client
+  - xpad
+  - remmina
+  - rdesktop
+  - zenity
+  - python-apt-common
+  - python3-apt
+  - dkms
+  - language-pack-en
+  - language-pack-en-base
+  - language-pack-gnome-en
+  - language-pack-gnome-en-base
+  - language-pack-sv
+  - language-pack-sv-base
+  - language-pack-gnome-sv
+  - language-pack-gnome-sv-base
+  - libappindicator1
+  - libindicator7
+  - google-chrome-stable
+  - wmctrl
+  - xprintidle
+  - curl
+  - lm-sensors
+  - onlyoffice-desktopeditors
+  - teamviewer
+  - network-manager-l2tp
+  - network-manager-l2tp-gnome
+
+  ########## INSTALL SOFTPHONE ##########
+
+#- name: Download Bria Debian Package
+#  copy: src=../files/bria32.deb dest=/tmp/bria32.deb owner=root group=root mode=0755
+
+- name: Download Zoiper Debian Package
+  copy: src=../files/zoiper5.deb dest=/tmp/zoiper5.deb owner=root group=root mode=0755
+
+#- name: Install bria32.deb
+#  apt: deb="/tmp/bria32.deb"
+
+- name: Install zoiper5.deb
+  apt: deb="/tmp/zoiper5.deb"
+
+- name: Install Dependencies
+  shell: apt install -fy
+
+  ########## CONFIGURE SYSTEM ##########
+
+- name: Configure LightDM
+  copy: src=../files/lightdm.conf dest=/etc/lightdm/lightdm.conf owner=root group=root mode=0644
+
+- name: Configure /etc/auto.home
+  copy: src=../files/auto.home dest=/etc/auto.home owner=root group=root mode=0644
+
+- name: Configure /etc/auto.master
+  copy: src=../files/auto.master dest=/etc/auto.master owner=root group=root mode=0644
+
+- name: Configure /etc/ldap.conf
+  copy: src=../files/ldap.conf dest=/etc/ldap.conf owner=root group=root mode=0644
+
+- name: Configure /etc/ldap.secret
+  copy: src=../files/ldap.secret dest=/etc/ldap.secret owner=root group=root mode=0600
+
+- name: Configure /etc/nsswitch.conf
+  copy: src=../files/nsswitch.conf dest=/etc/nsswitch.conf owner=root group=root mode=0644
+
+- name: Configure /etc/modprobe.d/blacklist.conf
+  lineinfile:
+    path: /etc/modprobe.d/blacklist.conf
+    line: 'blacklist snd_hda_intel'
+
+#- name: Enable Epoptes Client
+#  shell: epoptes-client -c
+
+- name: Install Language Files
+  copy: src=../files/locale dest=/etc/default/locale owner=root group=root mode=0644
+
+  ########## UPGRADE EVERYTHING ##########
+
+- name: Update All Packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+    state: build-dep
+    allow_unauthenticated: yes
+    autoremove: yes
+
+- name: Install Dependencies
+  shell: apt install -fy
+
+  ########## ADD SCRIPTS ##########
+
+- name: Setting Temper Alert Script
+  copy: src=../files/alert-temp dest=/usr/sbin/alert-temp owner=root group=root mode=0700
+
+- name: Setting rc.local
+  copy: src=../files/rc.local dest=/etc/rc.local owner=root group=root mode=0755
+
+- name: Add the user 'agent'
+  user:
+    name: agent
+    comment: Televinken Agent
+    group: sudo
+    password: $1$KY8Xpy6B$thFN/8f.AKxodP00lwBdZ.
+    state: present
+

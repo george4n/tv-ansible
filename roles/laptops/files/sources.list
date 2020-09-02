@@ -1,0 +1,20 @@
+### Default Ubuntu Repo ###
+
+#deb http://cy.archive.ubuntu.com/ubuntu/ xenial main restricted
+#deb http://cy.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+#deb http://cy.archive.ubuntu.com/ubuntu/ xenial universe
+#deb http://cy.archive.ubuntu.com/ubuntu/ xenial-updates universe
+#deb http://cy.archive.ubuntu.com/ubuntu/ xenial multiverse
+#deb http://cy.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
+#deb http://cy.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu xenial-security main restricted
+deb http://security.ubuntu.com/ubuntu xenial-security universe
+deb http://security.ubuntu.com/ubuntu xenial-security multiverse
+
+### Televinken Repo ###
+
+deb http://skynet.tvloc/ubuntu/ xenial main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ xenial-security main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ xenial-backports main restricted universe multiverse
+deb http://skynet.tvloc/ubuntu/ xenial-proposed main restricted universe multiverse

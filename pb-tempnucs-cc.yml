@@ -1,0 +1,6 @@
+---
+- hosts: tempnucs-cc
+  become: true
+  roles:
+  - basic
+  - 3kundservice
