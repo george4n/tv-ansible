@@ -1,0 +1,176 @@
+########## NETWORK SETTINGS ##########
+
+- name: Settings sudoers NOPASSWD
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD:ALL'
+    owner: root
+    group: root
+    mode: 440
+
+- name: Setting Hosts File Template
+  copy: src=../files/hosts dest=/etc/hosts owner=root group=root mode=0644
+
+- name: Adding IPV4 Address
+  lineinfile: "dest=/etc/hosts line='{{ ansible_default_ipv4.address }} {{ ansible_hostname }}'"
+
+- name: Modifying Hosts File
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.1\.1'
+    line: '127.0.1.1 {{ ansible_hostname }}'
+    owner: root
+    group: root
+    mode: 0644
+
+########## REPO SETTINGS ##########
+
+
+
+- name: Delete File Google Chrome Rogue List
+  file:
+    path: /etc/apt/sources.list.d/google-chrome.list
+    state: absent
+
+- name: Adding sources for Chrome
+  apt_repository:
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+
+- name: "Ensure Google linux signing key present"
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+
+- name: Add an apt key by id from a keyserver
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: CB2DE8E5
+
+- name: Adding sources for onlyoffice
+  apt_repository:
+    repo: deb https://download.onlyoffice.com/repo/debian squeeze main
+    state: present
+
+- name: Add an Apt signing key for teamviewer
+  apt_key:
+    url: https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc
+    state: present
+
+- name: Adding sources for TeamViewer
+  apt_repository:
+    repo: deb http://linux.teamviewer.com/deb stable main
+    state: present
+
+########## UPDATE REPO ##########
+
+- name: Update APT Repositories Cache
+  apt:
+    update_cache: yes
+    allow_unauthenticated: yes
+
+########## INSTALL DEPENDENCIES ##########
+
+- name: Install Dependencies
+  shell: apt install -fy
+
+########## ADD/REMOVE APPS ##########
+
+- name: Remove Blacklisted Packages
+  apt: pkg={{ item  }} state=absent
+  with_items:
+  - transmission-gtk
+  - transmission-common
+  - gnome-mahjongg
+  - gnome-mines
+  - gnome-sudoku
+  - account-plugin-aim
+  - account-plugin-facebook
+  - account-plugin-flickr
+  - account-plugin-jabber
+  - account-plugin-salut
+  - account-plugin-yahoo
+  - virtualbox
+  - virtualbox-qt
+  - chromium-browser
+  - firefox
+  - libreoffice*
+
+- name: Install Required Packages
+  apt: pkg={{ item  }} state=present
+  with_items:
+  - git
+  - htop
+  - vim
+  - iptraf
+  - ntp
+  - at
+  - watchdog
+  - epoptes-client
+  - xpad
+  - zenity
+  - python-apt-common
+  - python3-apt
+  - dkms
+  - language-pack-en
+  - language-pack-en-base
+  - language-pack-gnome-en
+  - language-pack-gnome-en-base
+  - language-pack-sv
+  - language-pack-sv-base
+  - language-pack-gnome-sv
+  - language-pack-gnome-sv-base
+  - google-chrome-stable
+  - wmctrl
+  - xprintidle
+  - curl
+  - lm-sensors
+  - onlyoffice-desktopeditors
+  - teamviewer
+
+  ########## INSTALL SOFTPHONE ##########
+
+- name: Download Zoiper Debian Package
+  copy: src=../files/zoiper5.deb dest=/tmp/zoiper5.deb owner=root group=root mode=0755
+
+- name: Install zoiper5.deb
+  apt: deb="/tmp/zoiper5.deb"
+
+- name: Install Dependencies
+  shell: apt install -fy
+
+  ########## CONFIGURE SYSTEM ##########
+
+- name: Configure /etc/modprobe.d/blacklist.conf
+  lineinfile:
+    path: /etc/modprobe.d/blacklist.conf
+    line: 'blacklist snd_hda_intel'
+
+#- name: Enable Epoptes Client
+#  shell: epoptes-client -c
+
+- name: Install Language Files
+  copy: src=../files/locale dest=/etc/default/locale owner=root group=root mode=0644
+
+  ########## UPGRADE EVERYTHING ##########
+
+- name: Update All Packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+    state: build-dep
+    allow_unauthenticated: yes
+    autoremove: yes
+
+- name: Install Dependencies
+  shell: apt install -fy
+
+  ########## ADD SCRIPTS ##########
+
+- name: Add the user 'agent'
+  user:
+    name: agent
+    comment: Televinken Agent
+    group: sudo
+    password: $1$KY8Xpy6B$thFN/8f.AKxodP00lwBdZ.
+    state: present
+

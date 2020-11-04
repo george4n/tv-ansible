@@ -1,6 +1,5 @@
 ---
-- hosts: laptops
+- hosts: external
   become: true
   roles:
-  - laptops
-  - 3telesales
+  - external
