@@ -12,6 +12,9 @@
 - name: Setting Hosts File Template
   copy: src=../files/hosts dest=/etc/hosts owner=root group=root mode=0644
 
+- name: Setting GDM
+  copy: src=../files/greeter.dconf-defaults dest=/etc/gdm3/greeter.dconf-defaults group=root mode=0644
+
 - name: Adding IPV4 Address
   lineinfile: "dest=/etc/hosts line='{{ ansible_default_ipv4.address }} {{ ansible_hostname }}'"
 
@@ -26,7 +29,9 @@
 
 ########## REPO SETTINGS ##########
 
-
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
 
 - name: Delete File Google Chrome Rogue List
   file:
@@ -37,6 +42,7 @@
   apt_repository:
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: present
+    update_cache: no
 
 - name: "Ensure Google linux signing key present"
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
