@@ -3,7 +3,31 @@
 	"HomepageLocation": "https://tv.dialingozone.com",
 	"HardwareAccelerationModeEnabled": false,
 	"BookmarkBarEnabled": true,
-	"ManagedBookmarks": [{
+	"ManagedBookmarks": [
+		{
+			"toplevel_name": "Office"
+		},
+		{
+			"url": "https://outlook.office.com/mail/inbox",
+			"name": "Outlook"
+		},
+		{
+			"url": "https://televinken-my.sharepoint.com/",
+			"name": "Sharepoint"
+		},
+		{
+			"url": "https://web.microsoftstream.com/",
+			"name": "Stream"
+		},
+		{
+			"url": "https://web.yammer.com/",
+			"name": "Yammer"
+		},
+		{
+			"url": "https://teams.microsoft.com/",
+			"name": "Teams"
+		},
+		{
 			"toplevel_name": "Operatörer"
 		},
 		{
