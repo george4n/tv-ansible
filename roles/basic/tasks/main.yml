@@ -186,6 +186,8 @@
   - network-manager-l2tp
   - network-manager-l2tp-gnome
   - cockpit
+  - teams
+
   ########## INSTALL SOFTPHONE ##########
 
 #- name: Download Bria Debian Package
