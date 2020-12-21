@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: all:!external
   become: true
   roles:
   - basic

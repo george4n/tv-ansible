@@ -26,20 +26,28 @@
 
 ########## REPO SETTINGS ##########
 
+
+
 - name: Delete File Ubuntu Rogue List
   file:
     path: /etc/apt/apt.conf.d/50appstream
-    state: absent
-
-- name: Delete File List
-  file:
-    path: /etc/apt/sources.list.d/minergate.list
     state: absent
 
 - name: Delete File Google Chrome Rogue List
   file:
     path: /etc/apt/sources.list.d/google-chrome.list
     state: absent
+
+- name: Ansible delete multiple file example
+  file:
+    path: "/etc/apt/sources.list.d/{{ item }}"
+    state: absent
+  with_items:
+    - teamviewer.list.dpkg-dist
+    - teamviewer.list
+    - slack.list.distUpgrade
+    - slack.list
+    - packages_microsoft_com_repos_ms_teams.list
 
 - name: Setting Local APT Sources Template
   copy: src=../files/sources.list dest=/etc/apt/sources.list owner=root group=root mode=0644
@@ -62,14 +70,10 @@
     keyserver: keyserver.ubuntu.com
     id: CB2DE8E5
 
-- name: Adding sources for onlyoffice
+- name: Removing sources for onlyoffice
   apt_repository:
     repo: deb https://download.onlyoffice.com/repo/debian squeeze main
-    state: present
-
-#- name: "Ensure OwnCloud linux signing key absent"
-#  apt_key: url=https://download.opensuse.org/repositories/isv:ownCloud:desktop/Ubuntu_16.04/Release.key
-#  state: absent
+    state: absent
 
 - name: Adding sources for Virtualbox
   apt_repository:
@@ -110,6 +114,8 @@
 - apt_repository:
     repo: ppa:nm-l2tp/network-manager-l2tp
 
+- action:  shell apt-mark hold google-chrome-stable
+  ignore_errors: yes
 ########## UPDATE REPO ##########
 
 - name: Update APT Repositories Cache
@@ -143,6 +149,10 @@
   - chromium-browser
   - firefox
   - libreoffice*
+  - network-manager-l2tp
+  - network-manager-l2tp-gnome
+  - onlyoffice-desktopeditors
+  - slack
 
 - name: Install Required Packages
   apt: pkg={{ item  }} state=present
@@ -176,15 +186,11 @@
   - language-pack-gnome-sv-base
   - libappindicator1
   - libindicator7
-  - google-chrome-stable
   - wmctrl
   - xprintidle
   - curl
   - lm-sensors
-  - onlyoffice-desktopeditors
   - teamviewer
-  - network-manager-l2tp
-  - network-manager-l2tp-gnome
   - cockpit
   - teams
 
@@ -196,11 +202,29 @@
 - name: Download Zoiper Debian Package
   copy: src=../files/zoiper5.deb dest=/tmp/zoiper5.deb owner=root group=root mode=0755
 
+- name: Download Chrome Debian Package
+  copy: src=../files/google-chrome-stable_86.0.4240.193-1_amd64.deb dest=/tmp/google-chrome-stable_86.0.4240.193-1_amd64.deb owner=root group=root mode=0755
+
+- name: Download GN Audio Debian Package
+  copy: src=../files/jdu_7.2.0-538+xenial-1_amd64.deb dest=/tmp/jdu_7.2.0-538+xenial-1_amd64.deb owner=root group=root mode=0755
+
+
 #- name: Install bria32.deb
 #  apt: deb="/tmp/bria32.deb"
 
 - name: Install zoiper5.deb
   apt: deb="/tmp/zoiper5.deb"
+
+- name: Install GN Audio
+  apt: deb="/tmp/jdu_7.2.0-538+xenial-1_amd64.deb"
+
+- name: Download Jabra Config File
+  copy: src=../files/Jabra.ini dest=/opt/jabra/Jabra.ini owner=root mode=0700
+
+- name: Install Chrome.deb
+  apt: 
+    deb: "/tmp/google-chrome-stable_86.0.4240.193-1_amd64.deb"
+    force: True
 
 - name: Download Zoom Debian Package
   copy: src=../files/zoom.deb dest=/tmp/zoom.deb owner=root group=root mode=0755

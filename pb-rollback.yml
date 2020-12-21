@@ -1,0 +1,4 @@
+- hosts: all:!external
+  become: true
+  roles:
+  - rollback

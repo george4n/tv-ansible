@@ -3,6 +3,9 @@
 
 [external]
 
+172.20.188.127
+172.20.188.152
+172.20.188.95
 
 [3savedesk]
 
@@ -14,6 +17,7 @@ nuc085
 nuc084
 nuc078
 nuc082
+nuc091
 
 [3foretag]
 
@@ -49,6 +53,7 @@ nuc045
 nuc039
 nuc048
 nuc073
+nuc037
 
 [3telesales]
 
@@ -63,3 +68,4 @@ nuc051
 nuc065
 nuc054
 nuc041
+172.20.188.62

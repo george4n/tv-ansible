@@ -1,0 +1,10 @@
+- name: Download Chrome Debian Package
+  copy: src=../files/google-chrome-stable_86.0.4240.193-1_amd64.deb dest=/tmp/google-chrome-stable_86.0.4240.193-1_amd64.deb owner=root group=root mode=0755
+
+- name: Install Chrome.deb
+  apt:
+    deb: "/tmp/google-chrome-stable_86.0.4240.193-1_amd64.deb"
+    force: True
+
+- action:  shell apt-mark hold google-chrome-stable
+  ignore_errors: yes
